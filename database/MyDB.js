@@ -21,6 +21,17 @@ function mydb() {
             client.close();
         }
     }
+
+    me.addProf = async (name, courseArray) => {
+        const {client,db} = await connect();
+        const profsCollection = db.collection('profs');
+        const res = await profsCollection.insertOne({name:name, course:courseArray});
+        try {
+            return res;
+        } finally {
+            client.close();
+        }
+    }
     return me;
 }
 export const myDB = mydb();
