@@ -9,7 +9,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
         },
         body: JSON.stringify({
             name: name,
-            courseArray: courseArray
+            courseArray: courseArray,
         })
     })
         .then(response => response.json())

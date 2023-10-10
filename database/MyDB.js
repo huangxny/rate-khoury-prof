@@ -1,4 +1,4 @@
-import {MongoClient} from "mongodb";
+import {MongoClient, ObjectId} from "mongodb";
 
 function mydb() {
     const me = {};
@@ -14,7 +14,16 @@ function mydb() {
         const {client,db} = await connect();
         const profsCollection = db.collection('profs');
         const documents = await profsCollection.find({}).toArray();
-        console.log(documents);
+        try {
+            return  documents;
+        } finally {
+            client.close();
+        }
+    }
+    me.getProfById = async (id) => {
+        const {client,db} = await connect();
+        const profsCollection = db.collection('profs');
+        const documents = await profsCollection.find({_id:new ObjectId(id)}).toArray();
         try {
             return  documents;
         } finally {
@@ -28,6 +37,26 @@ function mydb() {
         const res = await profsCollection.insertOne({name:name, course:courseArray});
         try {
             return res;
+        } finally {
+            client.close();
+        }
+    }
+    me.addComment = async (score, comment, pid) => {
+        const {client,db} = await connect();
+        const commentCollection = db.collection('comments');
+        const res = await commentCollection.insertOne({score:score, comment:comment, pid:pid});
+        try {
+            return res;
+        } finally {
+            client.close();
+        }
+    }
+    me.getCommentsByPid = async (pid) => {
+        const {client,db} = await connect();
+        const commentCollection = db.collection('comments');
+        const documents = await commentCollection.find({pid:pid}).toArray();
+        try {
+            return documents;
         } finally {
             client.close();
         }
