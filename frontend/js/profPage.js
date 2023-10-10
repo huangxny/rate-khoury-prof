@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 // post comment to server
-document.getElementById('form').addEventListener('submit', function(event) {
+document.querySelector('#form').addEventListener('submit', function(event) {
   event.preventDefault();
   const score = document.querySelector('#score').value;
   const comment = document.querySelector('#comment').value;
@@ -65,3 +65,4 @@ document.getElementById('form').addEventListener('submit', function(event) {
         console.error('Error:', error);
       });
 });
+
