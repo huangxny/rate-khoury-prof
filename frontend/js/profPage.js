@@ -1,76 +1,67 @@
-
 const currentUrl = window.location.href;
 const profId = currentUrl.split('/')[4];
-const commentDisplay = document.getElementById('commentDisplay');``
+// eslint-disable-next-line require-jsdoc
+async function displayProfInfo() {
+  const documentsContainer = document.querySelector('.profInfo');
+  try {
+    const response = await fetch(`/comments/${profId}`);
+    const documents = await response.json();
+    documents.forEach((document) => {
+      documentsContainer.innerHTML += `
+        <h2>${document.name}</h2>
+        <div>${document.course}</div>`;
+    });
+  } catch (error) {
+    console.error('Error fetching documents:', error);
+  }
+}
 
-console.log(profId);
-//fetch and display professor's info
+// eslint-disable-next-line require-jsdoc
+async function displayComments() {
+  const commentsContainer = document.querySelector('#commentList');
+
+  try {
+    const response = await fetch(`/getComments/${profId}`);
+    const documents = await response.json();
+    documents.forEach((document) => {
+      commentsContainer.innerHTML += `
+        <li class="commentItem">
+          <h4 class="indScore">Score: ${document.score}</h4>
+          <div>Comment: ${document.comment}</div>
+        </li><br>`;
+    });
+  } catch (error) {
+    console.error('Error fetching documents:', error);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
-    const documentsContainer = document.querySelector('.profInfo')
-
-    try {
-        const response = await fetch(`/comments/${profId}`);
-        const documents = await response.json();
-        console.log(documents);
-        documents.forEach(document => {
-            documentsContainer.innerHTML += `
-            <div class="col-4">
-  <div class="listing card">
-    <div class="card-body">
-      <h2 class="card-title">${document.name}</h2>
-      <div>${document.course}</div>
-    </div>
-  </div>
-  </div><br>`
-        });
-    } catch (error) {
-        console.error('Error fetching documents:', error);
-    }
+  await displayProfInfo();
+  await displayComments();
 });
-//post comment to server
+
+// post comment to server
 document.getElementById('form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const score = document.getElementById('score').value;
-    const comment = document.getElementById('comment').value;
-    fetch(`/comments/${profId}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            score: score,
-            comment: comment,
-            pid: profId.split(':')[1]
-        })
-    })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('response').textContent = data.message;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-});
-
-commentDisplay.addEventListener('click', async () => {
-    const commentsContainer = document.querySelector('#commentList')
-
-    try {
-        const response = await fetch(`/getComments/${profId}`);
-        const documents = await response.json();
-        console.log(documents);
-        documents.forEach(document => {
-            commentsContainer.innerHTML += `
-            <div class="col-4">
-  <div class="listing card">
-    <div class="card-body">
-      <h2 class="card-title">${document.score}</h2>
-      <div>${document.comment}</div>
-    </div>
-  </div>
-  </div><br>`
-        });
-    } catch (error) {
-        console.error('Error fetching documents:', error);
-    }
+  event.preventDefault();
+  const score = document.querySelector('#score').value;
+  const comment = document.querySelector('#comment').value;
+  fetch(`/comments/${profId}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      score: score,
+      comment: comment,
+      pid: profId.split(':')[1],
+    }),
+  })
+      .then((response) => response.json())
+      .then(async (data) => {
+        document.querySelector('#response').textContent = data.message;
+        await displayComments();
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
 });
