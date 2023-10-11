@@ -3,7 +3,9 @@ CS5610 project 2: rate my professor clone
 
 Author: Xinyuan Huang, Yue Wu
 
-Email:    ;wu.yue10@northeastern.edu
+Email:  
+huang.xinyua@northeastern.edu /n 
+wu.yue10@northeastern.edu
 
 Course Link: https://johnguerra.co/classes/webDevelopment_fall_2023/
 
@@ -11,45 +13,38 @@ WebPage Link:
 
 Video: 
 
-PowerPoint Slides:
+PowerPoint Slides: https://docs.google.com/presentation/d/1czUdzKZMbQUsxWehPNJmuRNj6Z1gu3d--poW_hVRrE4/edit?usp=sharing
 
-Design Doc:
+Design Doc: https://docs.google.com/document/d/1dJE1SdUd-smM0EuD1ikPSETl6bY2CgWJKPt1XO3sNv0/edit?usp=sharing
 
 # Project Objective:
 The aim of this project is to establish a platform for Northeastern University students, allowing them to rate and comment on their professors. This will assist students in making informed decisions when selecting professors that align with their learning preferences.
 
 # Tech Requirement:
-Code Editor: Visual Studio Code
+Code Editor: such as Visual Studio Code
 
 Browser: Modern browsers like Google Chrome, Mozilla Firefox, Safari, or Microsoft Edge for testing and viewing the website.
 
 GitHub: Platforms to host repositories, allowing for backup, sharing, and collaboration.
 
-HTML5: Latest standard for structuring content.
+MongoDB: Database
 
-CSS3: For styling, animations, and layout. Consideration for responsive design with media queries.
+NodeJS: Server-side JavaScript runtime environment
 
-JavaScript: For client-side interactivity. Familiarity with modern JavaScript features enhances coding efficiency and capability.
+NPM: Package manager for NodeJS
 
-CSS Frameworks: Bootstrap for faster styling and responsive design.
+# Instruction to build:
+1. Download the project from github
+2. Run npm install to install all the dependencies
+3. Change the MongoDB URI to your own URI in the MyDB.js file
+4. Use npm start to start the server
+5. Open the browser and go to localhost:3000 to view the website
 
-MongoDB
-
-NodeJS
-
-# Demo:
-
+# Screen Shots:
+![homepage.png](screen-shots%2Fhomepage.png)
+![add-comment.png](screen-shots%2Fadd-comment.png)
+![add-professor.png](screen-shots%2Fadd-professor.png)
 
 
-
-# Parts we're most proud of:
-Unique Design: Crafting a visually appealing and distinctive design that truly represents one's personality and professional identity can be a point of pride.
-
-Personal Growth: Overcoming challenges, learning new skills, and seeing the tangible progress from start to finish.
-
-# Parts were most difficult to handle:
-Decision Paralysis: With so many design inspirations, tools, and technologies available, deciding on the direction for one's personal website can be overwhelming.
-
-Content Creation: Writing about oneself, curating personal projects, and crafting the perfect copy can be time-consuming and challenging for some.
 
 
