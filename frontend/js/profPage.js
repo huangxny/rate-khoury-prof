@@ -21,8 +21,6 @@ async function displayProfInfo() {
 
 // eslint-disable-next-line require-jsdoc
 async function displayComments() {
-
-
   try {
     const response = await fetch(`/getComments/${profId}`);
     const documents = await response.json();

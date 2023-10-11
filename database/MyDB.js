@@ -18,7 +18,7 @@ function mydb() {
     try {
       return documents;
     } finally {
-      client.close();
+      await client.close();
     }
   };
   me.getProfById = async (id) => {
@@ -29,7 +29,7 @@ function mydb() {
     try {
       return documents;
     } finally {
-      client.close();
+      await client.close();
     }
   };
   me.getCommentsByPid = async (pid) => {
@@ -39,7 +39,7 @@ function mydb() {
     try {
       return documents;
     } finally {
-      client.close();
+      await client.close();
     }
   };
 
@@ -52,7 +52,7 @@ function mydb() {
     try {
       return res;
     } finally {
-      client.close();
+      await client.close();
     }
   };
   me.addComment = async (score, comment, pid) => {
@@ -63,7 +63,7 @@ function mydb() {
     try {
       return res;
     } finally {
-      client.close();
+      await client.close();
     }
   };
   me.deleteComment = async (commentId) => {
@@ -74,7 +74,7 @@ function mydb() {
     try {
       return res;
     } finally {
-      client.close();
+      await client.close();
     }
   };
   return me;
