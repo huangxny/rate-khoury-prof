@@ -33,5 +33,23 @@ JavaScript: For client-side interactivity. Familiarity with modern JavaScript fe
 
 CSS Frameworks: Bootstrap for faster styling and responsive design.
 
+MongoDB
+
+NodeJS
+
+# Demo:
+
+
+
+
+# Parts we're most proud of:
+Unique Design: Crafting a visually appealing and distinctive design that truly represents one's personality and professional identity can be a point of pride.
+
+Personal Growth: Overcoming challenges, learning new skills, and seeing the tangible progress from start to finish.
+
+# Parts were most difficult to handle:
+Decision Paralysis: With so many design inspirations, tools, and technologies available, deciding on the direction for one's personal website can be overwhelming.
+
+Content Creation: Writing about oneself, curating personal projects, and crafting the perfect copy can be time-consuming and challenging for some.
 
 
