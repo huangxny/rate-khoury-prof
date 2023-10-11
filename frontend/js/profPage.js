@@ -47,7 +47,7 @@ async function displayComments() {
       });
       return sum / array.length;
     };
-    const avgScore = average(scoreIntArr);
+    const avgScore = Math.round(average(scoreIntArr)*100)/100;
     scoreDisplay.textContent = `Average Score: ${avgScore}`;
     // update score to professor
     await fetch(`/updateScore/${profId}`, {
