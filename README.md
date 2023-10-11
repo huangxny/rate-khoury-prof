@@ -4,7 +4,7 @@ CS5610 project 2: rate my professor clone
 Author: Xinyuan Huang, Yue Wu
 
 Email:  
-huang.xinyua@northeastern.edu /n 
+huang.xinyua@northeastern.edu   
 wu.yue10@northeastern.edu
 
 Course Link: https://johnguerra.co/classes/webDevelopment_fall_2023/
