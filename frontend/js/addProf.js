@@ -13,6 +13,7 @@ document.querySelector('#form').addEventListener('submit', function(event) {
     body: JSON.stringify({
       name: name,
       courseArray: courseArray,
+      score: 0,
     }),
   })
       .then((response) => response.json())

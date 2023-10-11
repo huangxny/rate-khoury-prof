@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div class="card-body">
               <h2 class="card-title">${document.name}</h2>
               <div>${document.course}</div>
+              <h3>Score: ${document.score}</h3>
               <a 
               href="/comments/:${profID}/display" class="btn btn-primary"
               >Rate</a>

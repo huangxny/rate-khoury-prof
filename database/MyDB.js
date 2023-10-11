@@ -48,8 +48,8 @@ function mydb() {
   me.addProf = async (name, courseArray) => {
     const {client, db} = await connect();
     const profsCollection = db.collection('profs');
-    const res =
-        await profsCollection.insertOne({name: name, course: courseArray});
+    // eslint-disable-next-line max-len
+    const res = await profsCollection.insertOne({name: name, course: courseArray, score: 0});
     try {
       return res;
     } finally {
@@ -72,6 +72,17 @@ function mydb() {
     const commentCollection = db.collection('comments');
     // eslint-disable-next-line max-len
     const res = await commentCollection.deleteOne({_id: new ObjectId(commentId)});
+    try {
+      return res;
+    } finally {
+      await client.close();
+    }
+  };
+  me.updateScore = async (profId, avgScore) => {
+    const {client, db} = await connect();
+    const profsCollection = db.collection('profs');
+    // eslint-disable-next-line max-len
+    const res = await profsCollection.updateOne({_id: new ObjectId(profId)}, {$set: {score: avgScore}});
     try {
       return res;
     } finally {

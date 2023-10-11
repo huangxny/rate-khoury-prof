@@ -1,6 +1,7 @@
 const currentUrl = window.location.href;
 const profId = currentUrl.split('/')[4];
 const commentsContainer = document.querySelector('#commentList');
+const scoreDisplay = document.querySelector('#scoreDisplay');
 // eslint-disable-next-line require-jsdoc
 async function displayProfInfo() {
   const documentsContainer = document.querySelector('.profInfo');
@@ -24,8 +25,11 @@ async function displayComments() {
   try {
     const response = await fetch(`/getComments/${profId}`);
     const documents = await response.json();
+    const scores = [];
+    // display comments
     commentsContainer.innerHTML = '';
     documents.forEach((document) => {
+      scores.push(document.score);
       commentsContainer.innerHTML += `
         <li class="commentItem">
           <h4 class="indScore">Score: ${document.score}</h4>
@@ -34,8 +38,29 @@ async function displayComments() {
            data-comment-id="${document._id}">Delete Comment</button>
         </li><br>`;
     });
+    // calculate avg score
+    const scoreIntArr = scores.map(Number);
+    const average = (array) => {
+      let sum = 0;
+      array.forEach((score) => {
+        sum += score;
+      });
+      return sum / array.length;
+    };
+    const avgScore = average(scoreIntArr);
+    scoreDisplay.textContent = `Average Score: ${avgScore}`;
+    // update score to professor
+    await fetch(`/updateScore/${profId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({avgScore: avgScore}),
+    });
+    const data = await response.json();
+    console.log(data.message);
   } catch (error) {
-    console.error('Error fetching documents:', error);
+    console.error('Error updating document:', error);
   }
 }
 
