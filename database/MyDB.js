@@ -1,9 +1,10 @@
 import {MongoClient, ObjectId} from 'mongodb';
-
+import dotenv from 'dotenv';
+dotenv.config();
 // eslint-disable-next-line require-jsdoc
 function mydb() {
   const me = {};
-  const mongoUrl = 'mongodb+srv://huangxny:sTrohg55pzkwnmO7@cluster0.s1qbuus.mongodb.net/?retryWrites=true&w=majority';
+  const mongoUrl = process.env.MONGODB_URI;
   const connect = async () => {
     const client = new MongoClient(mongoUrl);
     await client.connect();
