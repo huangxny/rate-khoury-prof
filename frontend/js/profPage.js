@@ -1,8 +1,10 @@
 const currentUrl = window.location.href;
 const profId = currentUrl.split('/')[4];
+const commentsContainer = document.querySelector('#commentList');
 // eslint-disable-next-line require-jsdoc
 async function displayProfInfo() {
   const documentsContainer = document.querySelector('.profInfo');
+  const title = document.querySelector('title');
   try {
     const response = await fetch(`/comments/${profId}`);
     const documents = await response.json();
@@ -10,6 +12,7 @@ async function displayProfInfo() {
       documentsContainer.innerHTML += `
         <h2>${document.name}</h2>
         <div>${document.course}</div>`;
+      title.textContent = document.name;
     });
   } catch (error) {
     console.error('Error fetching documents:', error);
@@ -18,16 +21,19 @@ async function displayProfInfo() {
 
 // eslint-disable-next-line require-jsdoc
 async function displayComments() {
-  const commentsContainer = document.querySelector('#commentList');
+
 
   try {
     const response = await fetch(`/getComments/${profId}`);
     const documents = await response.json();
+    commentsContainer.innerHTML = '';
     documents.forEach((document) => {
       commentsContainer.innerHTML += `
         <li class="commentItem">
           <h4 class="indScore">Score: ${document.score}</h4>
           <div>Comment: ${document.comment}</div>
+           <button class="deleteBtn" 
+           data-comment-id="${document._id}">Delete Comment</button>
         </li><br>`;
     });
   } catch (error) {
@@ -65,4 +71,19 @@ document.querySelector('#form').addEventListener('submit', function(event) {
         console.error('Error:', error);
       });
 });
-
+// delete comment from server
+commentsContainer.addEventListener('click', async (event) => {
+  if (event.target.classList.contains('deleteBtn')) {
+    const commentId = event.target.getAttribute('data-comment-id');
+    try {
+      const response = await fetch(`/comments/${profId}/${commentId}`, {
+        method: 'DELETE',
+      });
+      const data = await response.json();
+      console.log(data.message); // Handle success message
+      await displayComments(); // Refresh comments after deletion
+    } catch (error) {
+      console.error('Error deleting comment:', error);
+    }
+  }
+});

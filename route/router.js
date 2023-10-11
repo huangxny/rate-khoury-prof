@@ -57,5 +57,10 @@ router.post('/comments/:profId', async (req, res) => {
   res.json({message: 'Form data successfully processed!'});
 });
 
+router.delete('/comments/:profId/:commentId', async (req, res) => {
+  const commentId = req.params.commentId;
+  await myDB.deleteComment(commentId);
+  res.json({message: ' data successfully deleted!'});
+});
 
 export default router;

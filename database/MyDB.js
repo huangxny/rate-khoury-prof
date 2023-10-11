@@ -66,6 +66,17 @@ function mydb() {
       client.close();
     }
   };
+  me.deleteComment = async (commentId) => {
+    const {client, db} = await connect();
+    const commentCollection = db.collection('comments');
+    // eslint-disable-next-line max-len
+    const res = await commentCollection.deleteOne({_id: new ObjectId(commentId)});
+    try {
+      return res;
+    } finally {
+      client.close();
+    }
+  };
   return me;
 }
 
