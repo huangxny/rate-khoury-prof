@@ -89,6 +89,8 @@ function mydb() {
       await client.close();
     }
   };
+
+  // For functions that accept multiple arguments, consider accepting a single object and then destructuring it. This makes your functions more extensible in the future.
   return me;
 }
 
