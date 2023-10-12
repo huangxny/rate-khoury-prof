@@ -9,7 +9,7 @@ wu.yue10@northeastern.edu
 
 Course Link: https://johnguerra.co/classes/webDevelopment_fall_2023/
 
-WebPage Link: Coming...
+WebPage Link: https://rate-khoury-professor.onrender.com/
 
 Video: https://youtu.be/I4MCbuS5a4k?si=yXKM7DsI_OcoKUVs
 
