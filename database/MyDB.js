@@ -11,7 +11,7 @@ function mydb() {
     const db = await client.db('rmp');
     return {client, db};
   };
-  // ---- read ----
+  // ---- read ----  
   me.getProfs = async () => {
     const {client, db} = await connect();
     const profsCollection = db.collection('profs');
@@ -91,5 +91,5 @@ function mydb() {
   };
   return me;
 }
-
+// It might be possible to split the Adding Professor Functionality section and the Rating Professors section into two distinct MyDB files.
 export const myDB = mydb();
