@@ -5,8 +5,9 @@ const __dirname = path.resolve();
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-// ---- display ----
-// display home page
+// ---- display ---- 
+// display home page 
+// It might be possible to split the Adding Professor Functionality section and the Rating Professors section into two distinct routes.
 router.get('/', (req, res) => {
   res.sendFile(__dirname + '/frontend/home.html');
 });
